@@ -16,6 +16,7 @@
 		3247699924416BC000817360 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3247699724416BC000817360 /* Main.storyboard */; };
 		3247699B24416BC400817360 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3247699A24416BC400817360 /* Assets.xcassets */; };
 		3247699E24416BC400817360 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3247699C24416BC400817360 /* LaunchScreen.storyboard */; };
+		324769A42441784600817360 /* TLLoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324769A32441784600817360 /* TLLoadingButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		3247699A24416BC400817360 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3247699D24416BC400817360 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3247699F24416BC400817360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		324769A32441784600817360 /* TLLoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLLoadingButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,8 @@
 			children = (
 				3247697424416B0400817360 /* TLLoadingButton.h */,
 				3247697524416B0400817360 /* Info.plist */,
+				324769A5244178AF00817360 /* Main */,
+				324769A6244178B700817360 /* LoadingViews */,
 			);
 			path = TLLoadingButton;
 			sourceTree = "<group>";
@@ -121,6 +125,21 @@
 				3247699F24416BC400817360 /* Info.plist */,
 			);
 			path = TLLoadingButtonExamples;
+			sourceTree = "<group>";
+		};
+		324769A5244178AF00817360 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				324769A32441784600817360 /* TLLoadingButton.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		324769A6244178B700817360 /* LoadingViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoadingViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +221,7 @@
 				TargetAttributes = {
 					3247697024416B0400817360 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 					3247697924416B0400817360 = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -263,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				324769A42441784600817360 /* TLLoadingButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +458,7 @@
 		3247698624416B0400817360 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Z2S78UX6KB;
@@ -453,6 +475,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thinhle.TLLoadingButton;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -461,6 +484,7 @@
 		3247698724416B0400817360 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Z2S78UX6KB;
@@ -485,6 +509,7 @@
 		3247698924416B0400817360 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z2S78UX6KB;
 				INFOPLIST_FILE = TLLoadingButtonTests/Info.plist;
@@ -503,6 +528,7 @@
 		3247698A24416B0400817360 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z2S78UX6KB;
 				INFOPLIST_FILE = TLLoadingButtonTests/Info.plist;

@@ -10,25 +10,74 @@ import XCTest
 @testable import TLLoadingButton
 
 class TLLoadingButtonTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func test_initLoadingButtonWithNoParam_initSubview() {
+        let sut = TLLoadingButton()
+        
+        XCTAssertNotNil(sut.containerView)
+        XCTAssertNotNil(sut.loadingLabel)
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func test_initLoadingButtonWithFrame_initSubview() {
+        let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        let sut = TLLoadingButton(frame: frame)
+        
+        XCTAssertNotNil(sut.containerView)
+        XCTAssertNotNil(sut.loadingLabel)
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func test_setAnimatedView_addedToContainerView() {
+        let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        let sut = TLLoadingButton(frame: frame)
+        
+        let animatedView = SpyView()
+        sut.animatedView = animatedView
+        
+        XCTAssert(sut.containerView.subviews.contains(animatedView))
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func test_setSpacing_adjustsSubviewsSpacing() {
+        let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        let sut = TLLoadingButton(frame: frame)
+        
+        sut.spacing = 12
+        
+        XCTAssert(sut.containerView.spacing == 12)
+    }
+    
+    func test_animateLoadingButton_animateAnimatedView() {
+        let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        let sut = TLLoadingButton(frame: frame)
+        
+        let animatedView = SpyView()
+        sut.animatedView = animatedView
+        sut.startLoading()
+        
+        XCTAssert(sut.isAnimating)
+    }
+    
+    func test_stopAnimatingLoadingButton_endAnimatedView() {
+        let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        let sut = TLLoadingButton(frame: frame)
+        
+        let animatedView = SpyView()
+        sut.animatedView = animatedView
+        sut.startLoading()
+        sut.stopLoading()
+        
+        XCTAssert(!sut.isAnimating)
+    }
+    
+    // MARK: Helpers
+    class SpyView: UIView, TLLoadingDelegate {
+        var hidesWhenStopped: Bool {
+            return true
+        }
+        
+        func startAnimating() {
+        }
+        
+        func stopAnimating() {
         }
     }
-
 }
