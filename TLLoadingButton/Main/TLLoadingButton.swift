@@ -8,70 +8,79 @@
 
 import UIKit
 
-protocol TLLoadingDelegate where Self: UIView {
+public protocol TLLoadingDelegate where Self: UIView {
     var hidesWhenStopped: Bool { get }
     func startAnimating()
     func stopAnimating()
 }
 
-class TLLoadingButton: UIButton {
+public class TLLoadingButton: UIButton {
     private var title: String?
-    @IBInspectable var loadingTitle: String?
-    
-    private(set) var loadingLabel: UILabel!
-    private(set) var containerView: UIStackView!
-    
-    var spacing: CGFloat = 0 {
+    @IBInspectable public var loadingTitle: String?
+     @IBInspectable public var spacing: CGFloat = 0 {
         didSet {
             containerView.spacing = spacing
         }
     }
     
-    var animatedStyle: AnimatedStyle = .left {
+    private(set) var loadingLabel: UILabel!
+    private(set) var containerView: UIStackView!
+    
+    public var animatedStyle: AnimatedStyle = .left {
         didSet {
             updateAnimatedView()
         }
     }
     
-    private(set) var isAnimating: Bool = false
+    public var isAnimating: Bool = false
     
-    var animatedView: TLLoadingDelegate? {
+    public var animatedView: TLLoadingDelegate? {
         didSet {
             updateAnimatedView()
         }
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         initSubview()
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
         initSubview()
     }
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        title = titleLabel?.text
-        loadingLabel.text = titleLabel?.text
-        loadingLabel.font = titleLabel?.font
-        loadingLabel.textColor = titleLabel?.textColor
-        setTitle(nil, for: .normal)
+        finishSetUp()
     }
     
-    func startLoading() {
+    public func startLoading() {
         isEnabled = false
         isAnimating = true
         loadingLabel.text = loadingTitle
         animatedView?.startAnimating()
     }
     
-    func stopLoading() {
+    public func stopLoading() {
         isEnabled = true
         isAnimating = false
         loadingLabel.text = title
         animatedView?.stopAnimating()
+    }
+    
+    public func finishSetUp() {
+        title = titleLabel?.text
+        loadingLabel.text = titleLabel?.text
+        loadingLabel.font = titleLabel?.font
+        loadingLabel.textColor = titleLabel?.textColor
+        setTitle(nil, for: .normal)
+        if animatedView == nil {
+            let indicator = UIActivityIndicatorView()
+            indicator.hidesWhenStopped = true
+            indicator.color = loadingLabel.textColor
+            animatedView = indicator
+        }
     }
     
     private func updateAnimatedView() {
@@ -104,7 +113,7 @@ class TLLoadingButton: UIButton {
 }
 
 extension TLLoadingButton {
-    enum AnimatedStyle {
+    public enum AnimatedStyle {
         case left
         case right
     }
