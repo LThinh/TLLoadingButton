@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "TLLoadingButton"
-  spec.version      = "0.0.1"
+  spec.version      = "1.0.1"
   spec.summary      = "UIButton subclass to represent loading state"
 
   # This description is used to generate tags and improve search results.
@@ -65,7 +65,7 @@ A swift library helps you make a button with loading state with your custom anim
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  spec.ios.deployment_target = "12.1"
+  spec.ios.deployment_target = "10.1"
   spec.swift_version = "4.2"
   # spec.platform     = :ios
   # spec.platform     = :ios, "5.0"
