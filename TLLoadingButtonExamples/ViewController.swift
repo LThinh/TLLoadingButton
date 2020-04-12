@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     }
     
     private func fetchData(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             completion()
         }
     }
