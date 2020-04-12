@@ -1,0 +1,6 @@
+coverage_service: cobertura_xml
+xcodeproj: TLLoadingButton.xcodeproj
+scheme: TLLoadingButton
+output_directory: reports
+ignore:
+  - TLLoadingButtonTests/*
