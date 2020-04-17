@@ -16,7 +16,7 @@ Sometimes we need to show loading on button as per requirement we don't want to 
 - [x] Shows/Hides spiner to indicate loading state
 - [x] Custom your own loading animation
 - [x] Shows an optional title while loading
-- [x] Configures directly on storyboard/xibs or writing code
+- [x] Configures directly on storyboard/xibs or constructs loading button programmatically
 
 ## Requirements
 
@@ -62,7 +62,7 @@ import TLLoadingButton
 
 // Create Loading button
 let frame = CGRect(x: 0, y: 0, width: 300, height: 40)
-signInButton = TLLoadingButton(frame: frame)
+let signInButton = TLLoadingButton(frame: frame)
 signInButton.setTitle("Sign In", for: .normal)
 signInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
 signInButton.setTitleColor(.red, for: .normal)
@@ -73,21 +73,26 @@ signInButton.layer.cornerRadius = 20
 // Setting loading title
 signInButton.loadingTitle = "Processing..."
 
-// Set spacing between `loading title` and `spiner`
+// Set spacing between `loading title` and `animated view`
 signInButton.spacing = 12
 
-// You must call this function to finish all set up
+// In case of creating loading button programmatically, You must call this function to finish all set up
 signInButton.finishSetUp()
+
+func signIn() {
+  // API Call
+}
 ```
 
 Or you can drag a `UIView` to your storyboard/xib file and set its class to `TLLoadingButton`
 [![Set custom class](https://i.gyazo.com/4c31f2846ac127827394fc8080009f2a.png)](https://gyazo.com/4c31f2846ac127827394fc8080009f2a)[![Image from Gyazo](https://i.gyazo.com/87be64760657cd37b5fb11cee6d3aaec.png)](https://gyazo.com/87be64760657cd37b5fb11cee6d3aaec)
 
 3. Start animating:
-By default we use an `UIActivityIndicatorView` to show animation, you can provide your own custom `Loading View` and set it to `animatedView`. In that case, your custom class must be adapt `TLLoadingDelegate`.
 ```
 signInButton.startLoading()
 ```
+
+By default we use an `UIActivityIndicatorView` to show animation, you can provide your own custom `Loading View` and set it to `animatedView`. In that case, your custom class must be adapted `TLLoadingDelegate`.
 
 4. Stop animating
 ```
